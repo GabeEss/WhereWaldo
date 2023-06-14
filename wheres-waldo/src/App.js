@@ -1,4 +1,5 @@
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import "./css/App.css";
 import Homepage from "./components/pages/Homepage";
 import Gamepage from "./components/pages/Gamepage";
 import { TargetProvider } from "./contexts/TargetContext";

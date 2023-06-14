@@ -11,7 +11,7 @@ const calculateRelativeCoordinates = (event) => {
     const targetAreaX = event.clientX - boundingRect.left;
     const targetAreaY = event.clientY - boundingRect.top;
 
-    // console.log("Relative Coordinates:", targetAreaX, targetAreaY);
+    console.log("Relative Coordinates:", targetAreaX, targetAreaY);
 };
 
 const calculateNewTargetLocations = (zoomLevel) => {
@@ -36,4 +36,8 @@ const calculateNewTargetLocations = (zoomLevel) => {
     return newLocations;
 };
 
-export { calculateRelativeCoordinates, calculateNewTargetLocations };
+const isTargetFound = (event, playerChoice) => {
+
+}
+
+export { calculateRelativeCoordinates, calculateNewTargetLocations, isTargetFound };

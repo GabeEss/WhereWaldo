@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'ONEPIECE';
+    font-style: normal;
+    font-weight: normal;
+    src: local('ONEPIECE'), local('ONEPIECE');
+}
+
+* {
+    font-family: 'ONEPIECE';
+}
