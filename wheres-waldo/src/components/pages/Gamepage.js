@@ -9,14 +9,14 @@ import LOCATIONS from "../../data/original-target-locations";
 
 const Gamepage = () => {
     const imageRef = useRef(null);
+    const squareRef = useRef(null);
+
     const [zoomLevel, setZoomLevel] = useState(1);
-    const [contextMenu, setContextMenu] = useState(null);
     const {setTargets} = useContext(TargetContext);
     const [isHovered, setHovered] = useState(false);
 
     const MIN_ZOOM_LEVEL = 1;
     const MAX_ZOOM_LEVEL = 2;
-    const squareRef = useRef(null);
   
     // Add ablity to zoom in on the image.
     useEffect(() => {
@@ -63,8 +63,16 @@ const Gamepage = () => {
       transform: `scale(${zoomLevel})`,
     };
 
+    const menuCheck = () => {
+        const menu = document.querySelector('.menu');
+        if(menu) {
+            document.body.removeChild(menu);
+        }
+    }
+
     const handleClick = (event) => {
         event.preventDefault();
+        menuCheck();
 
         const names = Object.keys(LOCATIONS);
 
@@ -73,7 +81,7 @@ const Gamepage = () => {
             top: event.clientY + window.scrollY,
             left: event.clientX + window.scrollX
         };
-
+        
         // Show the context menu with a list of names
         const menu = document.createElement('div');
         menu.classList.add('menu');
@@ -86,24 +94,21 @@ const Gamepage = () => {
             menuItem.addEventListener('click', () => handleNameSelection(name, menu));
             menuItem.addEventListener('mouseover', () => {
                 menuItem.style.background = 'lightgray';
-              });
-              menuItem.addEventListener('mouseout', () => {
+            });
+            menuItem.addEventListener('mouseout', () => {
                 menuItem.style.background = 'white';
-              });
+            });
             menu.appendChild(menuItem);
         });
 
         document.body.appendChild(menu);
+        
     };
 
     const handleNameSelection = (selectedName, menu) => {
         const location = LOCATIONS[selectedName];
         console.log(location); // or perform any other action with the location
     }
-
-    useEffect(() => {
-
-    }, [contextMenu])
 
     const handleMouseMove = (event) => {
         // document.body.style.cursor = 'none';
