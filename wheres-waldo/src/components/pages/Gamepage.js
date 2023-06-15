@@ -99,21 +99,43 @@ const Gamepage = () => {
 
             if(found) {
                 setHits(selectedName);
-                handleSuccess();
+                handleSuccess(position);
             } else {
-                handleFailure();
+                handleFailure(position);
             }
         }
 
         menuCheck();
     }
 
-    const handleFailure = () => {
+    const handleFailure = (position) => {
+        const div = document.createElement('div');
+        div.className = 'orange-square';
+        div.style.position = 'absolute';
+        div.style.top = `${position.top}px`; // Set the top position in pixels
+        div.style.left = `${position.left}px`; // Set the left position in pixels
 
+        // Append the div to the document body or any other desired container
+        document.body.appendChild(div);
+
+        setTimeout(() => {
+            document.body.removeChild(div);
+        }, 2000);
     }
 
-    const handleSuccess = () => {
+    const handleSuccess = (position) => {
+        const div = document.createElement('div');
+        div.className = 'blue-square';
+        div.style.position = 'absolute';
+        div.style.top = `${position.top}px`; // Set the top position in pixels
+        div.style.left = `${position.left}px`; // Set the left position in pixels
 
+        // Append the div to the document body or any other desired container
+        document.body.appendChild(div);
+
+        setTimeout(() => {
+            document.body.removeChild(div);
+        }, 2000);
     }
 
     const handleMouseMove = (event) => {

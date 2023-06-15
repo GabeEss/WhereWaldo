@@ -27,12 +27,27 @@
     opacity: .8;
 }
 
-.green-square {
+.blue-square {
     position: absolute;
     width: 100px;
     height: 100px;
-    background: green;
-    opacity: .8;
+    background: blue;
+    opacity: 0;
+    animation: fade 2s linear;
+}
+
+.orange-square {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: orange;
+    opacity: 0;
+    animation: fade 2s linear;
+}
+
+@keyframes fade {
+    50% { opacity: .6 }
+    0%,100% { opacity: 0 }
 }
 
 .no-pointer-events {
