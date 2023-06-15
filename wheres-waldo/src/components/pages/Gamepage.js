@@ -1,69 +1,21 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import backgroundImage from "../../images/background/OnePieceWheresWaldo.png";
 import "../../css/Gamepage.css";
-import { calculateRelativeCoordinates, calculateNewTargetLocations, isTargetFound } from "../../tools/calculate-coordinates";
+import { calculateRelativeCoordinates } from "../../tools/calculate-coordinates";
 import { TargetContext } from "../../contexts/TargetContext";
+import { TimerContext } from "../../contexts/TimerContext";
+import { ConfirmedHitContext } from "../../contexts/ConfirmedHitContext";
 import LOCATIONS from "../../data/original-target-locations";
 
 const Gamepage = () => {
-    const imageRef = useRef(null);
     const squareRef = useRef(null);
 
-    const [zoomLevel, setZoomLevel] = useState(1);
-    const {setTargets} = useContext(TargetContext);
-    const [isHovered, setHovered] = useState(false);
+    const {targets} = useContext(TargetContext);
+    const {setHits} = useContext(ConfirmedHitContext);
 
-    const MIN_ZOOM_LEVEL = 1;
-    const MAX_ZOOM_LEVEL = 2;
-  
-    // Add ablity to zoom in on the image.
-    useEffect(() => {
-        const handleScroll = (event) => {
-          const delta = event.deltaY;
-          if (delta > 0) {
-            // Zoom out
-            setZoomLevel((prevZoomLevel) =>
-              Math.max(prevZoomLevel - 0.1, MIN_ZOOM_LEVEL)
-            );
-          } else {
-            // Zoom in
-            setZoomLevel((prevZoomLevel) =>
-              Math.min(prevZoomLevel + 0.1, MAX_ZOOM_LEVEL)
-            );
-          }
-
-        };
-  
-        const imageElement = imageRef.current;
-
-        if (imageElement) {
-            imageElement.addEventListener("wheel", handleScroll);
-        }
-    
-        // Remove the previous zoom effect when the component changes. This is a cleanup
-        // statement.
-        return () => {
-            if (imageElement) {
-                imageElement.removeEventListener("wheel", handleScroll);
-            }
-        };
-    }, []);
-
-    useEffect(() => {
-        // Update target locations based on new zoom level
-        const newTargetLocations = calculateNewTargetLocations(zoomLevel);
-        setTargets(newTargetLocations);
-    }, [zoomLevel])
-
-    const handleResetZoom = () => {
-        setZoomLevel(1);
-    };
-  
-    const imageStyle = {
-      transform: `scale(${zoomLevel})`,
-    };
+    const squareSize = 100;
 
     const menuCheck = () => {
         const menu = document.querySelector('.menu');
@@ -83,6 +35,12 @@ const Gamepage = () => {
             top: event.clientY + window.scrollY,
             left: event.clientX + window.scrollX
         };
+
+        // Get the position of the targeting square.
+        const squarePosition = {
+            top: event.clientY + window.scrollY - squareSize / 2,
+            left: event.clientX + window.scrollX - squareSize / 2,
+        };
         
         // Show the context menu with a list of names
         const menu = document.createElement('div');
@@ -93,7 +51,7 @@ const Gamepage = () => {
         names.forEach((name) => {
             const menuItem = document.createElement('div');
             menuItem.textContent = name;
-            menuItem.addEventListener('click', () => handleNameSelection(name, menuPosition));
+            menuItem.addEventListener('click', () => handleNameSelection(name, squarePosition));
             menuItem.addEventListener('mouseover', () => {
                 menuItem.style.background = 'lightgray';
             });
@@ -108,19 +66,62 @@ const Gamepage = () => {
     };
 
     const handleNameSelection = (selectedName, position) => {
+
+        let found = false;
         const location = LOCATIONS[selectedName];
-        if(location)
-            console.log(location); // or perform any other action with the location
+
+        // Confirm the selected choice is valid.
+        if(location) {
+            // The range of the target should be within 50px of it's location.
+            let xLowerBoundary = targets[selectedName][0] - squareSize;
+            if(xLowerBoundary < 0)
+                xLowerBoundary = 0;
+
+            let xUpperBoundary = targets[selectedName][0] + squareSize;
+            if(xUpperBoundary > 1840)
+                xUpperBoundary = 1840;
+            
+            // Set the range of the yaxis too.
+            let yLowerBoundary = targets[selectedName][1] - squareSize;
+            if(yLowerBoundary < 0)
+                yLowerBoundary = 0;
+
+            let yUpperBoundary = targets[selectedName][1] + squareSize;
+            if(yUpperBoundary > 1300)
+                yUpperBoundary = 1300;
+
+            // Check the click position against range of the target.
+            if(position.top >= yLowerBoundary && position.top <= yUpperBoundary) {
+                if(position.left >= xLowerBoundary && position.left <= xUpperBoundary) {
+                    found = true;   
+                }
+            }
+
+            if(found) {
+                setHits(selectedName);
+                handleSuccess();
+            } else {
+                handleFailure();
+            }
+        }
 
         menuCheck();
     }
 
+    const handleFailure = () => {
+
+    }
+
+    const handleSuccess = () => {
+
+    }
+
     const handleMouseMove = (event) => {
-        // document.body.style.cursor = 'none';
+        
+        // Remember to check the cursor, if you're going to change the size of the targeting box.
+        document.body.style.cursor = 'none';
         const square = document.querySelector(".square");
       
-        const squareSize = 50;
-
         const squarePosition = {
           top: event.clientY + window.scrollY - squareSize / 2,
           left: event.clientX + window.scrollX - squareSize / 2,
@@ -135,8 +136,6 @@ const Gamepage = () => {
           square.style.left = `${squarePosition.left}px`;
           square.style.top = `${squarePosition.top}px`;
         }
-      
-        setHovered(true);
       };
 
       const handleMouseLeave = () => {
@@ -145,7 +144,6 @@ const Gamepage = () => {
         if (square && square.parentNode === document.body) {
           document.body.removeChild(square);
         }
-        setHovered(false);
       };
 
     return(
@@ -162,8 +160,6 @@ const Gamepage = () => {
                     onClick={handleClick}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    style={imageStyle}
-                    ref={imageRef}
                     ></img>
                 </div>
             </div>

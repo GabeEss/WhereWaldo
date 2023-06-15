@@ -21,9 +21,17 @@
 
 .square {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     background: white;
+    opacity: .8;
+}
+
+.green-square {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: green;
     opacity: .8;
 }
 
