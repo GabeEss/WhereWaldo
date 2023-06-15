@@ -42,6 +42,8 @@ const Gamepage = () => {
             imageElement.addEventListener("wheel", handleScroll);
         }
     
+        // Remove the previous zoom effect when the component changes. This is a cleanup
+        // statement.
         return () => {
             if (imageElement) {
                 imageElement.removeEventListener("wheel", handleScroll);
@@ -91,7 +93,7 @@ const Gamepage = () => {
         names.forEach((name) => {
             const menuItem = document.createElement('div');
             menuItem.textContent = name;
-            menuItem.addEventListener('click', () => handleNameSelection(name, menu));
+            menuItem.addEventListener('click', () => handleNameSelection(name, menuPosition));
             menuItem.addEventListener('mouseover', () => {
                 menuItem.style.background = 'lightgray';
             });
@@ -105,16 +107,19 @@ const Gamepage = () => {
         
     };
 
-    const handleNameSelection = (selectedName, menu) => {
+    const handleNameSelection = (selectedName, position) => {
         const location = LOCATIONS[selectedName];
-        console.log(location); // or perform any other action with the location
+        if(location)
+            console.log(location); // or perform any other action with the location
+
+        menuCheck();
     }
 
     const handleMouseMove = (event) => {
         // document.body.style.cursor = 'none';
         const square = document.querySelector(".square");
       
-        const squareSize = 20;
+        const squareSize = 50;
 
         const squarePosition = {
           top: event.clientY + window.scrollY - squareSize / 2,
@@ -147,8 +152,7 @@ const Gamepage = () => {
         <div className="Gamepage">
             <Header/>
             <div className="game-container">
-                <div className="Description"><h1>Find the Straw Hats from ONE PIECE</h1></div>
-                <div className="description-separator"></div>
+                <div className="header-separator"></div>
                 <div className="picture-container">
                     <img 
                     className="game-image"
