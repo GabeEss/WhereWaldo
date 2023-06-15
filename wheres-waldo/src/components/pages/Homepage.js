@@ -9,6 +9,7 @@ const Homepage = () => {
     return(
         <div>
             <Header/>
+                <h3>Correct choices will be displayed in blue. Incorrect choices will be displayed in orange.</h3>
                 {hits}
             <Footer/>
         </div>

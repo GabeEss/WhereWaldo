@@ -4,10 +4,6 @@
     font-weight: normal;
     src: local('ONEPIECE'), local('ONEPIECE');
 }
-
-* {
-    font-family: 'ONEPIECE';
-}
   
 .pages {
     display: flex;
@@ -15,6 +11,7 @@
 }
 
   .header-button {
+    font-family: 'ONEPIECE';
     background: linear-gradient(#7ac7d6, #0a508b);
     color: white;
     padding: 10px 20px;
@@ -22,6 +19,8 @@
     border: none;
     cursor: pointer;
     margin-right: 10px;
+    height: 40px;
+    width: 100px;
   }
   
   .header-button:hover {
@@ -29,6 +28,7 @@
   }
 
   .description {
+    font-family: 'ONEPIECE';
     display: flex;
     justify-content: center;
   }

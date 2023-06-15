@@ -66,7 +66,6 @@ const Gamepage = () => {
     };
 
     const handleNameSelection = (selectedName, position) => {
-
         let found = false;
         const location = LOCATIONS[selectedName];
 
@@ -112,10 +111,9 @@ const Gamepage = () => {
         const div = document.createElement('div');
         div.className = 'orange-square';
         div.style.position = 'absolute';
-        div.style.top = `${position.top}px`; // Set the top position in pixels
-        div.style.left = `${position.left}px`; // Set the left position in pixels
+        div.style.top = `${position.top}px`;
+        div.style.left = `${position.left}px`;
 
-        // Append the div to the document body or any other desired container
         document.body.appendChild(div);
 
         setTimeout(() => {
@@ -127,10 +125,9 @@ const Gamepage = () => {
         const div = document.createElement('div');
         div.className = 'blue-square';
         div.style.position = 'absolute';
-        div.style.top = `${position.top}px`; // Set the top position in pixels
-        div.style.left = `${position.left}px`; // Set the left position in pixels
+        div.style.top = `${position.top}px`;
+        div.style.left = `${position.left}px`;
 
-        // Append the div to the document body or any other desired container
         document.body.appendChild(div);
 
         setTimeout(() => {
@@ -140,7 +137,7 @@ const Gamepage = () => {
 
     const handleMouseMove = (event) => {
         
-        // Remember to check the cursor, if you're going to change the size of the targeting box.
+        // Remember to comment this line out, if you're going to change the size of the targeting box.
         document.body.style.cursor = 'none';
         const square = document.querySelector(".square");
       
@@ -178,14 +175,13 @@ const Gamepage = () => {
                     className="game-image"
                     alt=""
                     src={backgroundImage}
-                    // onClick={calculateRelativeCoordinates} // for finding initial target without zoom
+                    // onClick={calculateRelativeCoordinates} // for finding initial target
                     onClick={handleClick}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     ></img>
                 </div>
             </div>
-            <Footer/>
         </div>
     )
 }
