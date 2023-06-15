@@ -25,5 +25,10 @@
   }
   
   .header-button:hover {
-    background-color: #45a049;
+    background: red;
+  }
+
+  .description {
+    display: flex;
+    justify-content: center;
   }

@@ -27,8 +27,8 @@ const Header = () => {
                 <button className="header-button" onClick={handleGiveUp}>Give up</button>
             </div>
             {!isGiveUpPage && (
-                <div className="Description">
-                    <h1>Find the Straw Hats from ONE PIECE</h1>
+                <div className="description">
+                    <h1>Find the Straw Hats from ONE P<span style={{ color: 'red' }}>I</span>ECE</h1>
                 </div>
             )}
         </div>
