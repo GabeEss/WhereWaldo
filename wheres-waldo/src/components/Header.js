@@ -1,11 +1,12 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TimerContext } from "../contexts/TimerContext";
+import "../css/App.css";
 
 const Header = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const isGiveUpPage = location.pathname === "/GiveUp";
+    // const location = useLocation();
+    // const isGiveUpPage = location.pathname === "/GiveUp";
     const { time, setTime } = useContext(TimerContext);
 
     const handlePlay = () => {
@@ -16,7 +17,6 @@ const Header = () => {
         }   
     };
 
-    // User go home on click.
     const handleHome = () => {
         navigate("/");
     }
@@ -32,13 +32,8 @@ const Header = () => {
                 <button className="header-button" onClick={handleHome}>Home</button>
                 <button className="header-button" onClick={handlePlay}>Play</button>
                 <button className="header-button" onClick={handleGiveUp}>Give up</button>
-                <h3>Time: {time}</h3>
+                <h3 className="time">Time: {time}</h3>
             </div>
-            {!isGiveUpPage && (
-                <div className="description">
-                    <h1>Find the Straw Hats from ONE P<span style={{ color: 'red' }}>I</span>ECE</h1>
-                </div>
-            )}
         </div>
     )
 }

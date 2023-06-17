@@ -1,5 +1,6 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import Header from "../Header";
+import StickyHeader from "../StickyHeader";
 import Footer from "../Footer";
 import backgroundImage from "../../images/background/OnePieceWheresWaldo.png";
 import "../../css/Gamepage.css";
@@ -11,9 +12,9 @@ import LOCATIONS from "../../data/original-target-locations";
 
 const Gamepage = () => {
     const squareRef = useRef(null);
-
     const {targets} = useContext(TargetContext);
     const {setHits} = useContext(ConfirmedHitContext);
+    const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
     const squareSize = 100;
 
@@ -165,9 +166,21 @@ const Gamepage = () => {
         }
       };
 
+      useEffect(() => {
+        const handleScroll = () => {
+          setIsHeaderVisible(window.pageYOffset === 0);
+        };
+    
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, []);
+
     return(
         <div className="Gamepage">
             <Header/>
+            <StickyHeader isVisible={!isHeaderVisible}/>
             <div className="game-container">
                 <div className="header-separator"></div>
                 <div className="picture-container">
