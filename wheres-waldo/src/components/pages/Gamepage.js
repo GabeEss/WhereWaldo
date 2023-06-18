@@ -1,19 +1,24 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import Header from "../Header";
 import StickyHeader from "../StickyHeader";
-import Footer from "../Footer";
+import PlayerSubmit from "../PlayerSubmit";
 import backgroundImage from "../../images/background/OnePieceWheresWaldo.png";
 import "../../css/Gamepage.css";
 import { calculateRelativeCoordinates } from "../../tools/calculate-coordinates";
 import { TargetContext } from "../../contexts/TargetContext";
 import { TimerContext } from "../../contexts/TimerContext";
 import { ConfirmedHitContext } from "../../contexts/ConfirmedHitContext";
+import { GameOverContext } from "../../contexts/GameoverContext";
+import { FinalScoreContext } from "../../contexts/FinalScoreContext";
 import LOCATIONS from "../../data/original-target-locations";
 
 const Gamepage = () => {
     const squareRef = useRef(null);
     const {targets} = useContext(TargetContext);
-    const {setHits} = useContext(ConfirmedHitContext);
+    const {hits, setHits} = useContext(ConfirmedHitContext);
+    const {time, setTime} = useContext(TimerContext);
+    const { gameover, setGameOver } = useContext(GameOverContext);
+    const { score, setScore } = useContext(FinalScoreContext);
     const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
     const squareSize = 100;
@@ -134,6 +139,8 @@ const Gamepage = () => {
         setTimeout(() => {
             document.body.removeChild(div);
         }, 2000);
+
+        handleGameOver();
     }
 
     const handleMouseMove = (event) => {
@@ -177,25 +184,46 @@ const Gamepage = () => {
         };
       }, []);
 
+      // Checks the number of targets selected. Right now (2023), there are 10 Straw Hat pirates, so 9 hits.
+        const handleGameOver = () => {
+            if (hits.size === 1) {
+                setScore(time);
+                setTime(0); // reset the time
+                setHits(new Set()); // reset the confirmed hits
+                setGameOver(true);
+            }
+        }
+
     return(
-        <div className="Gamepage">
-            <Header/>
-            <StickyHeader isVisible={!isHeaderVisible}/>
-            <div className="game-container">
-                <div className="header-separator"></div>
-                <div className="picture-container">
-                    <img 
-                    className="game-image"
-                    alt=""
-                    src={backgroundImage}
-                    // onClick={calculateRelativeCoordinates} // for finding initial target
-                    onClick={handleClick}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                    ></img>
+        <div>
+            {gameover ? 
+                <div className="overlay">
+                        <div className="gameover">
+                            <PlayerSubmit/>
+                        </div>
+                </div> :
+                <div className="Gamepage">
+                    <Header/>
+                    <StickyHeader isVisible={!isHeaderVisible}/>
+                    <div className="game-container">
+                        <div className="header-separator">
+                        </div>
+                            <div className="picture-container">
+                                <img 
+                                className="game-image"
+                                alt=""
+                                src={backgroundImage}
+                                // onClick={calculateRelativeCoordinates} // for finding initial target
+                                onClick={handleClick}
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                                ></img>
+                            </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
+        
     )
 }
 

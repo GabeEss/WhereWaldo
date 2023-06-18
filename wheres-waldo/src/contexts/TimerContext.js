@@ -26,6 +26,8 @@ export const TimerProvider = ({children}) => {
               }, 1000);
             
               return () => clearInterval(timerInterval);
+        } else {
+            localStorage.setItem('timer', time.toString()); // Save time in localStorage
         }
       }, [time]);
 

@@ -26,20 +26,18 @@ const StickyHeader = ({ isVisible }) => {
 
     return (
         <div>
-            
-                <div className={`sticky-header${!isVisible ? " hidden" : ""}`}>
-                <button className="header-button" onClick={handleHome}>
-                    Home
-                </button>
-                <button className="header-button" onClick={handlePlay}>
-                    Play
-                </button>
-                <button className="header-button" onClick={handleGiveUp}>
-                    Give up
-                </button>
-                <h3 className="time">Time: {time}</h3>
-                </div>
-          
+            <div className={`sticky-header${!isVisible ? " hidden" : ""}`}>
+            <button className="header-button" onClick={handleHome}>
+                Home
+            </button>
+            <button className="header-button" onClick={handlePlay}>
+                Play
+            </button>
+            <button className="header-button" onClick={handleGiveUp}>
+                Give up
+            </button>
+            <h3 className="time">Time: {time}</h3>
+            </div>
         </div>     
       );
     };

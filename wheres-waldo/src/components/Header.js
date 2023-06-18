@@ -1,6 +1,7 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TimerContext } from "../contexts/TimerContext";
+import { ConfirmedHitContext } from "../contexts/ConfirmedHitContext";
 import "../css/App.css";
 
 const Header = () => {
@@ -8,6 +9,7 @@ const Header = () => {
     // const location = useLocation();
     // const isGiveUpPage = location.pathname === "/GiveUp";
     const { time, setTime } = useContext(TimerContext);
+    const { setHits } = useContext(ConfirmedHitContext);
 
     const handlePlay = () => {
         navigate("/Play");
@@ -23,16 +25,24 @@ const Header = () => {
 
     const handleGiveUp = () => {
         navigate("/GiveUp");
-        setTime(0);
+        setTime(0); // reset the time
+        setHits(new Set()); // reset the confirmed hits
+    }
+
+    const handleScores = () => {
+        navigate("/Scores");
     }
 
     return (
-        <div className="header">
-            <div className="pages">
-                <button className="header-button" onClick={handleHome}>Home</button>
-                <button className="header-button" onClick={handlePlay}>Play</button>
-                <button className="header-button" onClick={handleGiveUp}>Give up</button>
-                <h3 className="time">Time: {time}</h3>
+        <div>
+            <div className="header">
+                <div className="pages">
+                    <button className="header-button" onClick={handleHome}>Home</button>
+                    <button className="header-button" onClick={handlePlay}>Play</button>
+                    <button className="header-button" onClick={handleGiveUp}>Give Up</button>
+                    <button className="header-button" onClick={handleScores}>High Scores</button>
+                    <h3 className="time">Time: {time}</h3>
+                </div>
             </div>
         </div>
     )
