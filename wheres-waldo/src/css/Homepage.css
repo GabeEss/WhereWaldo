@@ -9,8 +9,9 @@
 }
 
 .description {
+    margin-top: 20px;
     font-family: 'ONEPIECE';
-    color: antiquewhite;;
+    color: antiquewhite;
     background: linear-gradient(#7ac7d6, #0a508b);
     display: flex;
     justify-content: center;

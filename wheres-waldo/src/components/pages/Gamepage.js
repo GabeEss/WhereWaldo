@@ -4,7 +4,7 @@ import StickyHeader from "../StickyHeader";
 import PlayerSubmit from "../PlayerSubmit";
 import backgroundImage from "../../images/background/OnePieceWheresWaldo.png";
 import "../../css/Gamepage.css";
-import { calculateRelativeCoordinates } from "../../tools/calculate-coordinates";
+// import { calculateRelativeCoordinates } from "../../tools/calculate-coordinates";
 import { TargetContext } from "../../contexts/TargetContext";
 import { TimerContext } from "../../contexts/TimerContext";
 import { ConfirmedHitContext } from "../../contexts/ConfirmedHitContext";
@@ -18,7 +18,7 @@ const Gamepage = () => {
     const {hits, setHits} = useContext(ConfirmedHitContext);
     const {time, setTime} = useContext(TimerContext);
     const { gameover, setGameOver } = useContext(GameOverContext);
-    const { score, setScore } = useContext(FinalScoreContext);
+    const { setScore } = useContext(FinalScoreContext);
     const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
     const squareSize = 100;
@@ -186,7 +186,7 @@ const Gamepage = () => {
 
       // Checks the number of targets selected. Right now (2023), there are 10 Straw Hat pirates, so 9 hits.
         const handleGameOver = () => {
-            if (hits.size === 1) {
+            if (hits.size === 9) {
                 setScore(time);
                 setTime(0); // reset the time
                 setHits(new Set()); // reset the confirmed hits

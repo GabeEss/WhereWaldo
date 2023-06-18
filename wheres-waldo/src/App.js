@@ -28,7 +28,7 @@ function App() {
             </HitProvider>
           </TimerProvider>
         </GameOverProvider>
-      </ScoreProvider>
+        </ScoreProvider>
     </BrowserRouter>
   );
 }

@@ -1,13 +1,11 @@
 import React, {useContext} from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TimerContext } from "../contexts/TimerContext";
 import { ConfirmedHitContext } from "../contexts/ConfirmedHitContext";
 import "../css/App.css";
 
 const Header = () => {
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const isGiveUpPage = location.pathname === "/GiveUp";
     const { time, setTime } = useContext(TimerContext);
     const { setHits } = useContext(ConfirmedHitContext);
 

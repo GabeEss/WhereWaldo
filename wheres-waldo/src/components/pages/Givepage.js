@@ -25,7 +25,7 @@ const Givepage = () => {
             <StickyHeader isVisible={!isHeaderVisible}/>
             <div className="game-container">
                 <div className="header-separator"></div>
-                <img src={solution}></img>
+                <img src={solution} alt=""></img>
             </div>
             <Footer/>
         </div>

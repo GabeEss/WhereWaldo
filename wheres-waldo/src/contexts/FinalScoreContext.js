@@ -1,25 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { collection, getDocs } from "firebase/firestore";
-import {db} from '../firebase';
+import React, { createContext, useState } from 'react';
+
+// This context contains the location of each target.
 
 export const FinalScoreContext = createContext();
 
 export const ScoreProvider = ({children}) => {
-    const [score, setScore] = useState([]);
- 
-    const fetchPost = async () => {
-        await getDocs(collection(db, "high scores"))
-            .then((querySnapshot)=>{               
-                const newData = querySnapshot.docs
-                    .map((doc) => ({...doc.data(), id:doc.id }));
-                setScore(newData);                
-                // console.log(score, newData);
-        })
-    }
-   
-    useEffect(()=>{
-        fetchPost();
-    }, [])
+    const [score, setScore] = useState(0);
 
     return(
         <FinalScoreContext.Provider value={{score, setScore}}>
