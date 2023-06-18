@@ -1,4 +1,5 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header";
 import StickyHeader from "../StickyHeader";
 import PlayerSubmit from "../PlayerSubmit";
@@ -13,6 +14,7 @@ import { FinalScoreContext } from "../../contexts/FinalScoreContext";
 import LOCATIONS from "../../data/original-target-locations";
 
 const Gamepage = () => {
+    const navigate = useNavigate();
     const squareRef = useRef(null);
     const {targets} = useContext(TargetContext);
     const {hits, setHits} = useContext(ConfirmedHitContext);
@@ -128,19 +130,21 @@ const Gamepage = () => {
     }
 
     const handleSuccess = (position) => {
-        const div = document.createElement('div');
-        div.className = 'blue-square';
-        div.style.position = 'absolute';
-        div.style.top = `${position.top}px`;
-        div.style.left = `${position.left}px`;
+        if(hits.size !== 10) {
+            const div = document.createElement('div');
+            div.className = 'blue-square';
+            div.style.position = 'absolute';
+            div.style.top = `${position.top}px`;
+            div.style.left = `${position.left}px`;
 
-        document.body.appendChild(div);
+            document.body.appendChild(div);
 
-        setTimeout(() => {
-            document.body.removeChild(div);
-        }, 2000);
-
-        handleGameOver();
+            setTimeout(() => {
+                document.body.removeChild(div);
+            }, 2000);
+        } else {
+            handleGameOver();
+        }   
     }
 
     const handleMouseMove = (event) => {
@@ -174,6 +178,12 @@ const Gamepage = () => {
       };
 
       useEffect(() => {
+        // If the game isn't over, but the time is somehow at 0.
+        if (time === "00:00:00" && !gameover) {
+            // Set the URL to the home page
+            navigate("/");
+          }
+
         const handleScroll = () => {
           setIsHeaderVisible(window.pageYOffset === 0);
         };
@@ -184,9 +194,9 @@ const Gamepage = () => {
         };
       }, []);
 
-      // Checks the number of targets selected. Right now (2023), there are 10 Straw Hat pirates, so 9 hits.
+      // Checks the number of targets selected. Right now (2023), there are 10 Straw Hat pirates.
         const handleGameOver = () => {
-            if (hits.size === 9) {
+            if (hits.size === 10) {
                 setScore(time);
                 setTime(0); // reset the time
                 setHits(new Set()); // reset the confirmed hits
