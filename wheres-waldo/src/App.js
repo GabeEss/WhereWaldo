@@ -1,4 +1,4 @@
-import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./css/App.css";
 import Homepage from "./components/pages/Homepage";
 import Gamepage from "./components/pages/Gamepage";
@@ -12,7 +12,7 @@ import { ScoreProvider } from "./contexts/FinalScoreContext";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScoreProvider>
         <GameOverProvider>
           <TimerProvider>
@@ -29,7 +29,7 @@ function App() {
           </TimerProvider>
         </GameOverProvider>
         </ScoreProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
