@@ -8,6 +8,11 @@ const Scorepage = () => {
     const [score, setScore] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const timeToMilliseconds = (timeString) => {
+        const [hours, minutes, seconds] = timeString.split(":");
+        return (parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)) * 1000;
+      };      
+
     const fetchScores = async () => {
         try {
           const querySnapshot = await getDocs(collection(db, "high scores"));
@@ -16,7 +21,7 @@ const Scorepage = () => {
             id: doc.id,
           }));
             
-            scoresData.sort((a, b) => a.score - b.score); // Sort scores in ascending order
+            scoresData.sort((a, b) => timeToMilliseconds(a.time) - timeToMilliseconds(b.time)); // Sort scores in ascending order
 
             setScore(scoresData);
             setLoading(false);
