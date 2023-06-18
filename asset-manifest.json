@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/WhereWaldo/static/css/main.61a270a8.css",
+    "main.js": "/WhereWaldo/static/js/main.700b7278.js",
+    "static/media/OnePieceWheresWaldo.png": "/WhereWaldo/static/media/OnePieceWheresWaldo.048e1a738a37f813df5d.png",
+    "static/media/OnePieceWheresWaldoSolution.png": "/WhereWaldo/static/media/OnePieceWheresWaldoSolution.9c6fcef3965c0fad568a.png",
+    "static/media/Usopp.png": "/WhereWaldo/static/media/Usopp.cf0a7267315805fdbbdf.png",
+    "static/media/Sanji.png": "/WhereWaldo/static/media/Sanji.7114cd4cb3a35ded2930.png",
+    "static/media/Franky.png": "/WhereWaldo/static/media/Franky.115cd0bb68d5de02254e.png",
+    "static/media/Zoro.png": "/WhereWaldo/static/media/Zoro.0a784cf21ca30c8c4327.png",
+    "static/media/Robin.png": "/WhereWaldo/static/media/Robin.a7518274d1ab956a20d2.png",
+    "static/media/Jinbe.png": "/WhereWaldo/static/media/Jinbe.e9bddfcacf502053d92c.png",
+    "static/media/Nami.png": "/WhereWaldo/static/media/Nami.2410789ed504f4e4f4d1.png",
+    "static/media/Luffy.jpg": "/WhereWaldo/static/media/Luffy.e08bb83d4a81775b0a75.jpg",
+    "static/media/Chopper.jpg": "/WhereWaldo/static/media/Chopper.1e69b2a08f4998ec46e8.jpg",
+    "static/media/Brooke.jpg": "/WhereWaldo/static/media/Brooke.a8fbb090ab04228cf84f.jpg",
+    "index.html": "/WhereWaldo/index.html",
+    "main.61a270a8.css.map": "/WhereWaldo/static/css/main.61a270a8.css.map",
+    "main.700b7278.js.map": "/WhereWaldo/static/js/main.700b7278.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61a270a8.css",
+    "static/js/main.700b7278.js"
+  ]
+}
