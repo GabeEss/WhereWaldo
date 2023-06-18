@@ -130,7 +130,8 @@ const Gamepage = () => {
     }
 
     const handleSuccess = (position) => {
-        if(hits.size !== 10) {
+        // This function is a little behind the actual number in hits.size
+        if(hits.size < 9) {
             const div = document.createElement('div');
             div.className = 'blue-square';
             div.style.position = 'absolute';
@@ -142,13 +143,10 @@ const Gamepage = () => {
             setTimeout(() => {
                 document.body.removeChild(div);
             }, 2000);
-        } else {
-            handleGameOver();
-        }   
+        }
     }
 
     const handleMouseMove = (event) => {
-        
         // Remember to comment this line out, if you're going to change the size of the targeting box.
         document.body.style.cursor = 'none';
         const square = document.querySelector(".square");
@@ -182,7 +180,7 @@ const Gamepage = () => {
         if (time === "00:00:00" && !gameover) {
             // Set the URL to the home page
             navigate("/");
-          }
+        }
 
         const handleScroll = () => {
           setIsHeaderVisible(window.pageYOffset === 0);
@@ -193,6 +191,10 @@ const Gamepage = () => {
           window.removeEventListener("scroll", handleScroll);
         };
       }, []);
+
+      useEffect(() => {
+        if(hits.size === 10) handleGameOver();
+      }, [hits])
 
       // Checks the number of targets selected. Right now (2023), there are 10 Straw Hat pirates.
         const handleGameOver = () => {
