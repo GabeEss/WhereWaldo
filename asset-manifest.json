@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/WhereWaldo/static/css/main.60ac5025.css",
+    "main.css": "/WhereWaldo/static/css/main.34b51351.css",
     "main.js": "/WhereWaldo/static/js/main.700b7278.js",
     "static/media/OnePieceWheresWaldo.png": "/WhereWaldo/static/media/OnePieceWheresWaldo.048e1a738a37f813df5d.png",
     "static/media/OnePieceWheresWaldoSolution.png": "/WhereWaldo/static/media/OnePieceWheresWaldoSolution.9c6fcef3965c0fad568a.png",
@@ -15,13 +15,13 @@
     "static/media/Chopper.jpg": "/WhereWaldo/static/media/Chopper.1e69b2a08f4998ec46e8.jpg",
     "static/media/Brooke.jpg": "/WhereWaldo/static/media/Brooke.a8fbb090ab04228cf84f.jpg",
     "static/media/Vertiky.ttf": "/WhereWaldo/static/media/Vertiky.be51b8d0477b28eeba26.ttf",
-    "static/media/one piece font.ttf": "/WhereWaldo/static/media/one piece font.951ce8e89b9138e6d37a.ttf",
+    "static/media/onepiecefont.ttf": "/WhereWaldo/static/media/onepiecefont.951ce8e89b9138e6d37a.ttf",
     "index.html": "/WhereWaldo/index.html",
-    "main.60ac5025.css.map": "/WhereWaldo/static/css/main.60ac5025.css.map",
+    "main.34b51351.css.map": "/WhereWaldo/static/css/main.34b51351.css.map",
     "main.700b7278.js.map": "/WhereWaldo/static/js/main.700b7278.js.map"
   },
   "entrypoints": [
-    "static/css/main.60ac5025.css",
+    "static/css/main.34b51351.css",
     "static/js/main.700b7278.js"
   ]
 }
