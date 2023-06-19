@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import backgroundImage from "../../images/background/OnePieceWheresWaldo.png";
 import "../../css/Homepage.css";
+import "../../css/fonts.css";
 import Header from "../Header";
 import StickyHeader from "../StickyHeader";
 import Footer from "../Footer";
@@ -10,6 +11,12 @@ import { ConfirmedHitContext } from "../../contexts/ConfirmedHitContext";
 const Homepage = () => {
     const {hits} = useContext(ConfirmedHitContext);
     const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+    const styles = {
+        fontFamily: "'ONEPIECE', sans-serif",
+        color: 'antiquewhite',
+        fontSize: '24px',
+      };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,7 +34,7 @@ const Homepage = () => {
             <Header/>
             <StickyHeader isVisible={!isHeaderVisible}/>
             <div className="description">
-                    <h1>Find the Straw Hats from ONE P<span style={{ color: 'red' }}>I</span>ECE</h1>
+                    <h1 style={styles}>Find the Straw Hats from ONE P<span style={{ color: 'red' }}>I</span>ECE</h1>
             </div>
             <Bounties/>
             <div className="explain">

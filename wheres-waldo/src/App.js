@@ -1,5 +1,6 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "./css/App.css";
+import "./css/fonts.css";
 import Homepage from "./components/pages/Homepage";
 import Gamepage from "./components/pages/Gamepage";
 import Scorepage from "./components/pages/Scorepage";
