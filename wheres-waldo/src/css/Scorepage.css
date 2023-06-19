@@ -1,13 +1,11 @@
 .score-page {
-    
 }
 .score-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: antiquewhite;
 }
-  
+
   .score-item {
     border: white 1px solid;
     border-radius: 8px;
@@ -25,13 +23,7 @@
   }
   
   .score-item:before {
-    content: counter(score-counter);
-    counter-increment: score-counter;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: -30px;
-    transform: translateY(-50%);
+    list-style-type: none;
   }
   
   .username,
