@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/WhereWaldo/static/css/main.9c83b420.css",
-    "main.js": "/WhereWaldo/static/js/main.0835c438.js",
+    "main.js": "/WhereWaldo/static/js/main.4955a922.js",
     "static/media/OnePieceWheresWaldo.png": "/WhereWaldo/static/media/OnePieceWheresWaldo.048e1a738a37f813df5d.png",
     "static/media/OnePieceWheresWaldoSolution.png": "/WhereWaldo/static/media/OnePieceWheresWaldoSolution.9c6fcef3965c0fad568a.png",
     "static/media/Usopp.png": "/WhereWaldo/static/media/Usopp.cf0a7267315805fdbbdf.png",
@@ -18,10 +18,10 @@
     "static/media/onepiecefont.ttf": "/WhereWaldo/static/media/onepiecefont.951ce8e89b9138e6d37a.ttf",
     "index.html": "/WhereWaldo/index.html",
     "main.9c83b420.css.map": "/WhereWaldo/static/css/main.9c83b420.css.map",
-    "main.0835c438.js.map": "/WhereWaldo/static/js/main.0835c438.js.map"
+    "main.4955a922.js.map": "/WhereWaldo/static/js/main.4955a922.js.map"
   },
   "entrypoints": [
     "static/css/main.9c83b420.css",
-    "static/js/main.0835c438.js"
+    "static/js/main.4955a922.js"
   ]
 }
