@@ -17,8 +17,8 @@ const PlayerSubmit = () => {
 
     try {
         const docRef = await addDoc(collection(db, "high scores"), {
-          user: username,
-          time: score,
+          username: username,
+          score: score,
         });
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
