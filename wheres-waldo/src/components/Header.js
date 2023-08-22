@@ -9,6 +9,13 @@ const Header = () => {
     const { time, setTime } = useContext(TimerContext);
     const { setHits } = useContext(ConfirmedHitContext);
 
+    const menuCheck = () => {
+        const menu = document.querySelector('.menu');
+        if(menu) {
+            document.body.removeChild(menu);
+        }
+    }
+
     const handlePlay = () => {
         navigate("/Play");
         // Initialize the timer.
@@ -18,16 +25,19 @@ const Header = () => {
     };
 
     const handleHome = () => {
+        menuCheck();
         navigate("/");
     }
 
     const handleGiveUp = () => {
+        menuCheck();
         navigate("/GiveUp");
         setTime(0); // reset the time
         setHits(new Set()); // reset the confirmed hits
     }
 
     const handleScores = () => {
+        menuCheck();
         navigate("/Scores");
     }
 
